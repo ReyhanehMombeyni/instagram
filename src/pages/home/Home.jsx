@@ -1,6 +1,9 @@
+import Navbar from "../../components/Layout/Navbar";
 
 export default function Home() {
   return (
-    <div>home</div>
+    <main>
+        <Navbar/>
+    </main>
   )
 }
