@@ -1,6 +1,5 @@
 import { client } from "../../lib/axios";
 
-
 export const PostApiRegister = async (user) => {
     try{
         const response = await client.post("/api/user/signup", {
