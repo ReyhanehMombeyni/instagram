@@ -14,7 +14,7 @@ export default function Signup() {
 
   const {register, handleSubmit, formState: {errors}}= useForm({
     resolver: yupResolver(schema),
-    mode: "onBlur"
+    mode: "onChange"
   })
 
   const formSumit = (user) =>{
