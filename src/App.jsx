@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Signup from "./pages/auth/signup"
 import Login from "./pages/auth/Login"
 import Home from "./pages/home/Home"
-// import SearchBar from "./components/SearchBar"
+import SearchBar from "./components/search/SearchApi"
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/" element={<Signup/>}/>
         <Route path="/login" element={<Login/>}/>
-
+        <Route path="/search" element={<SearchBar/>}/>
       </Routes>
     </BrowserRouter>
     
@@ -20,4 +20,3 @@ function App() {
 }
 
 export default App
-

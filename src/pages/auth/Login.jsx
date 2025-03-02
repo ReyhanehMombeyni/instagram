@@ -10,7 +10,7 @@ const schema = yup.object({
   password: yup.string().required().min(8).max(12),
 });
 
-function Login() {
+function  Login() {
 
   const {
       register,
