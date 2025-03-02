@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { client } from "../../../lib/axios";
-import PostItem from "../Post/PostItem";
+import PostItem from "./PostItem"
 const Posts = () => {
   const [posts, setPosts] = useState();
 
