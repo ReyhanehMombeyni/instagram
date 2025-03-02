@@ -1,19 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { PostApiRegister } from "./api";
-
+import { client } from "../../../lib/axios";
 
 const schema = yup.object({
   username: yup.string().required(),
   email: yup.string().required().email(),
-  password: yup.string().required().min(8).max(12),
+  password: yup.string().required(),
 });
 
 export default function Signup() {
-
+  const navigate= useNavigate()
   const {
     register,
     handleSubmit,
@@ -23,9 +22,19 @@ export default function Signup() {
     mode: "onBlur",
   });
 
-  const submitForm=(user) => {
-    PostApiRegister(user)
-  }
+  const submitForm = async (user) => {
+    try {
+      const response = await client.post("/api/user/signup", {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+      });
+      navigate("/login")
+    } catch (err) {
+      console.log(err);
+    }
+    // PostApiRegister(user)
+  };
 
   return (
     <div className="max-w-2xl mx-auto border border-[#9B9191] px-[210px] py-[50px] flex flex-col mt-[130px] items-center justify-center">
@@ -46,7 +55,9 @@ export default function Signup() {
           className="py-[10px] px-[30px] border border-[#8A8888] rounded-md"
           {...register("email")}
         />
-        {errors.email && <span className="text-error py-3">{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-error py-3">{errors.email.message}</span>
+        )}
         <input
           type="text"
           name="username"
@@ -54,14 +65,19 @@ export default function Signup() {
           className="py-[10px] px-[30px] border border-[#8A8888] rounded-md"
           {...register("username")}
         />
-        {errors.username && <span className="text-error py-3">{errors.username.message}</span>}
+        {errors.username && (
+          <span className="text-error py-3">{errors.username.message}</span>
+        )}
         <input
           type="password"
           name="password"
           placeholder="Password"
           className="py-[10px] px-[30px] border border-[#8A8888] rounded-md"
+          {...register("password")}
         />
-        {errors.password && <span className="text-error py-3">{errors.password.message}</span>}
+        {errors.password && (
+          <span className="text-error py-3">{errors.password.message}</span>
+        )}
         <button
           className="text-white text-center bg-[#44B8FA] px-[58px] py-[8px] cursor-pointer rounded-lg outline-none"
           type="submit"
@@ -70,7 +86,7 @@ export default function Signup() {
         </button>
       </form>
       <span className="text-black mt-3">
-      Already have an account?
+        Already have an account?
         <Link to={"/login"} className="text-[#44B8FA]">
           Login
         </Link>
