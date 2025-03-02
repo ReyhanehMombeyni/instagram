@@ -7,7 +7,7 @@ import { client } from "../../../lib/axios";
 
 const schema = yup.object({
   username: yup.string().required(),
-  password: yup.string().required().min(8).max(12),
+  password: yup.string().required(),
 });
 
 function Login() {

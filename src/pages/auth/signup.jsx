@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { PostApiRegister } from "./api";
 import { client } from "../../../lib/axios";
 
 const schema = yup.object({
