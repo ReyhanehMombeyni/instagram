@@ -13,9 +13,6 @@ const Posts = () => {
     }
   };
 
-  useEffect(() => {
-    GetApiPosts()
-  }, []);
 
   return <div>
     <PostItem posts={posts}/>

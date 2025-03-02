@@ -7,13 +7,31 @@ import { IoHeartSharp } from "react-icons/io5";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import Comment from "../comment/Comment";
+import { useForm } from "react-hook-form"
+import { client } from "../../../lib/axios";
 
 export default function PostItem() {
   const [like, setLike] = useState(false)
   const [unSave, setUnSave] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+    const {
+        register,
+        handleSubmit,
+      } = useForm();
+  const [isOpenComment, setIsOpenComment] = useState(false)
   const getLike = () => {
     setLike(!like)
+  }
+  const submitForm = async (user) => {
+    try{
+      const response = await client.post("/api/comment",{
+        comments: user.comments,
+      })
+      localStorage.setItem("comment", response.data.comments)
+      setIsOpenComment(false)
+    }catch (err) {
+      console.log(err);
+    }
   }
   return (
     <section className="text-black mx-auto mt-10 pb-5">
@@ -44,7 +62,7 @@ export default function PostItem() {
           {
             isOpen && (
               <div className="fixed inset-0 bg-opacity-50 backdrop-blur-md flex justify-center items-center" onClick={() => setIsOpen(false)}>
-                <Comment/>
+                <Comment />
               </div>
             )
           }
@@ -65,7 +83,23 @@ export default function PostItem() {
       <p>See translation</p>
       <p className="text-gray-400">View all 13,384 comments</p>
       <div className="flex items-center justify-between">
-        <p>Add a comment…</p>
+        <p className="cursor-pointer" onClick={() => setIsOpenComment(true)}>Add a comment…</p>
+        {
+          isOpenComment && (
+            <div className="fixed inset-0 bg-opacity-50 backdrop-blur-md flex justify-center items-center">
+              <div className="w-lg bg-white px-12 py-2.5 flex flex-col gap-2.5">
+                <h1 className="text-xl text-black">New Comment</h1>
+                <form action="" className="flex flex-col gap-3" onSubmit={handleSubmit(submitForm)}>
+                  <input type="text" placeholder="Add a comment…" {...register("comments")}/>
+                  <div className="flex items-center self-end gap-2.5">
+                    <button type="submit" className="py-2 px-3 border-none text-white bg-green-950">Add</button>
+                    <button className="py-2 px-3 border-none text-white bg-red-700" onClick={() => setIsOpenComment(false)}>Close</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )
+        }
         <CiFaceSmile />
       </div>
     </section>
