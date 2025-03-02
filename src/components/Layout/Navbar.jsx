@@ -12,8 +12,8 @@ export default function Navbar() {
             <div className="flex flex-col gap-2 text-black ">
                 <span onClick={() => navigate("/home")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"> <IoHomeSharp className="w-[24px] h-[24px]"/>Home</span>
                 <span onClick={() => navigate("/search")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"><IoIosSearch className="w-[24px] h-[24px]"/>Search</span>
-                <span onClick={() => navigate("/")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"><AiOutlinePlusSquare className="w-[24px] h-[24px]"/>Create</span>
-                <span onClick={() => navigate("/")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"><FaUser className="w-[24px] h-[24px]"/>Profile</span>
+                <span onClick={() => navigate("/home")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"><AiOutlinePlusSquare className="w-[24px] h-[24px]"/>Create</span>
+                <span onClick={() => navigate("/profile")} className="flex items-center gap-4 py-[12px] pr-[122px] cursor-pointer"><FaUser className="w-[24px] h-[24px]"/>Profile</span>
             </div>
         </header>
     )

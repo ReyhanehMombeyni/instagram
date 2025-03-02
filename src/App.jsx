@@ -4,6 +4,7 @@ import Signup from "./pages/auth/signup"
 import Login from "./pages/auth/Login"
 import Home from "./pages/home/Home"
 import Layout from "./components/Layout/Layout"
+import Profile from "./components/profile/Profile"
 import SearchBar from "./components/search/SearchApi"
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         {
           path: "/search",
           element: <SearchBar />
+        },
+        {
+          path: "/profile",
+          element: <Profile/>
         }
       ]
     }
