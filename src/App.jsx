@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom"
 import Signup from "./pages/auth/signup"
 import Login from "./pages/auth/Login"
 import Home from "./pages/home/Home"
-import SearchBar from "./components/search/SearchBar"
 import Layout from "./components/Layout/Layout"
+import SearchBar from "./components/search/SearchApi"
 
 const router = createBrowserRouter([
     {
